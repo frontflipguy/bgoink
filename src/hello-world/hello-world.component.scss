@@ -1,0 +1,19 @@
+.header-banner {
+    width: 100%;
+    background-color: #bdfac5;
+    text-align: center;
+    height: 75px;
+    font-size: 40pt;
+    font-weight: bold;
+    font-family: "serif";
+    letter-spacing: 12px;
+    box-shadow: 0px 5px 5px gray;
+    text-shadow: 0px 2px 5px gray;
+    justify-content: center;
+    display: flex;
+}
+
+.squelch {
+    width: 410px;
+    transform: skew(-14deg, 0deg);
+}

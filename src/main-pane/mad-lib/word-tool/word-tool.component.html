@@ -1,0 +1,20 @@
+<form class="popup" [formGroup]="wordTypeForm">
+    <div style="justify-content: center; display:flex">What type of word is "{{ wordOfInterest }}"?</div>
+    <br/>
+    <mat-radio-group formControlName="checkboxes">
+        <mat-radio-button value="noun">Noun</mat-radio-button>
+        <br/>
+        <mat-radio-button value="verb">Verb</mat-radio-button>
+        <br/>
+        <mat-radio-button value="adjective">Adjective</mat-radio-button>
+        <br/>
+        <mat-radio-button value="adverb">Adverb</mat-radio-button>
+        <br/>
+        <mat-radio-button value="other">Other</mat-radio-button>: &nbsp;
+    </mat-radio-group>
+    <input type="text" formControlName="userInput"/>
+    <br/>
+    <div style="justify-content: center; display:flex">
+        <div class="lib-button back-button" (click)="submit()">Submit</div> <div class="lib-button back-button" (click)="close()">Cancel</div>
+    </div>
+</form>

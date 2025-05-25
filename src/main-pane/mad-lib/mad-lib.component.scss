@@ -1,0 +1,59 @@
+.options {
+    padding: 10px;
+}
+
+.center {
+    justify-content: center;
+    display: flex;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+.lib-button {
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #bdfac5;
+    box-shadow: 0px 5px 5px gray;
+    bottom: 0px;
+    transition: bottom 400ms, box-shadow 400ms, background-color 400ms;
+    position: relative;
+}
+
+.main-button {
+    width: 200px;
+    height: 30px;
+    padding-top: 10px;
+    margin: 15px;
+}
+
+.back-button {
+    width: 50px;
+    height: 20px;
+    padding: 2px;
+    margin: 10px;
+}
+
+.lib-button:hover {
+    background-color: #cdfcd3;
+    bottom: 5px;
+    box-shadow: 0px 10px 5px gray;
+}
+
+.lib-button:active {
+    background-color: #bdfac5;
+    bottom: 0px;
+    box-shadow: 0px 5px 5px gray;
+    transition: bottom 100ms, box-shadow 100ms, background-color 100ms;
+}
+
+.area {
+    resize: none;
+    width: 90%;
+    height: 300px;
+    margin: 14px 28px 0px 28px;
+}

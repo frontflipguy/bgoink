@@ -1,0 +1,36 @@
+<div class="center" style="padding-top: 10px">
+    <div class="title">MAD LIB</div>
+</div>
+<hr>
+<div *ngIf="display=='options'" class="options center">
+    <div>
+        <div class="lib-button main-button" (click)="prepareToPlay()">Play a Mad Lib</div>
+        <div class="lib-button main-button" (click)="handleWrite()">Write a Mad Lib Template</div>
+    </div>
+</div>
+
+<div *ngIf="display=='play'">
+    <div class="lib-button back-button" (click)="handleBack()">Back</div>
+    <div class="options center">
+        <form *ngIf="fillOut" class="options" [formGroup]="madlibForm">
+            <div *ngFor="let hint of hints; index as i" >
+                {{ hint }}: <input matInput type="text" id="word{{i}}" formControlName="word{{i}}"  autocomplete="off"/>
+            </div>
+            <div class="lib-button back-button" (click)="handleSubmit()">Submit</div>
+        </form>
+        <div *ngIf="!fillOut">
+            <div>{{madlibTemplate}}</div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="display=='write'">
+    <div class="lib-button back-button" style="display: inline-block" (click)="handleBack()">Back</div>
+    <div style="display: inline-block"> Write some text, select the word you want to madlibify, then select what type of word it is</div>
+    <div class="center">
+        <textarea id="myTextarea" class="area" (click)="onTextAreaClick($event)"></textarea>
+    </div>
+    <div class="center">
+        <div class="lib-button back-button center" (click)="handleDone()">Done</div>
+    </div>
+</div>
