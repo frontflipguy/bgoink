@@ -1,1 +1,12 @@
-<div class="popup">Your URL for this mad lib is: <div class="linkArea"><a href="{{url}}">{{url}}</a></div></div>
+<div class="popup" *ngIf="part == 'part1'">
+    <div>Choose a name to save your madlib.</div>
+    <div><input #nameInput type="text" autocomplete="off"/></div>
+    <div style="justify-content: center; display:flex">
+        <div class="lib-button back-button" (click)="save(nameInput.value)">Save</div> <div class="lib-button back-button" (click)="close()">Cancel</div>
+    </div>
+</div>
+
+
+<div class="popup" *ngIf="part == 'part2'">Your URL for this mad lib is: <div class="linkArea">
+    <a href="https://bgoink.com/?value={{name}}">https://bgoink.com/?value={{name}}</a>
+</div></div>

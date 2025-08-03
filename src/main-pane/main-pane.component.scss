@@ -1,8 +1,22 @@
+
 .main-pane {
     display: block;
     justify-self: center;
     width: 50%;
-    height: 500px;
+    height: 510px;
     border: 2px solid black;
     border-radius: 15px;
+    overflow-y: auto;
+}
+
+@media only screen and (max-width: 480px) {
+    .main-pane {
+        display: block;
+        justify-self: center;
+        width: 96%;
+        height: 560px;
+        border: 2px solid black;
+        border-radius: 15px;
+        overflow-y: auto;
+    }
 }
