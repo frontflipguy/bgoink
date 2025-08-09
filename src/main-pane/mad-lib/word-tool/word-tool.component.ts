@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
@@ -21,7 +21,7 @@ export class WordToolComponent {
 
   wordOfInterest: string = "test";
   wordTypeForm = this.fb.group({
-    checkboxes: this.fb.control(''),
+    checkboxes: this.fb.control('', Validators.required),
     userInput: this.fb.control(''),
   });
   wordType: string;
@@ -44,5 +44,21 @@ export class WordToolComponent {
 
   close(){
     this.dialogRef.close();
+  }
+
+  disableSubmitButton(){
+    if(this.wordTypeForm.valid){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getColor(){
+    if(this.wordTypeForm.valid){
+      return '#bdfac5';
+    } else {
+      return '#8d8d8d';
+    }
   }
 }

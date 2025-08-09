@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 import { MatTooltip, MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog } from '@angular/material/dialog';
 import { WordToolComponent } from './word-tool/word-tool.component';
@@ -22,7 +23,8 @@ import { madLib } from './mad-lib-object';
     MatFormFieldModule,
     MatTooltipModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonModule
   ]
 })
 export class MadLibComponent implements OnInit {
@@ -40,6 +42,7 @@ export class MadLibComponent implements OnInit {
   initialView = true;
   opacity = 1;
   hide = false;
+  wordToolWidth: '320px';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -77,7 +80,7 @@ export class MadLibComponent implements OnInit {
     this.hints = myItem.hints.split(',');
 
     this.hints.forEach((hint, index) => {
-      this.madlibForm.addControl("word"+index, this.fb.control(""));
+      this.madlibForm.addControl("word"+index, this.fb.control("", Validators.required));
     });
   }
 
@@ -116,7 +119,8 @@ export class MadLibComponent implements OnInit {
     }
   }
 
-  handleSubmit(){
+  handleSubmit(){ //TODO: maybe make it so you can intake a name, re-use the name throughout the mad lib if needed,
+    //have the user select the pronouns for the name, and then correctly set all the pronouns in the story to accuratley refer to that name
     this.hints.forEach((hint, index) => {
       const replacingWord: string = this.madlibForm.get("word"+index).value;
       this.madlibTemplate = this.madlibTemplate.replace("FLAGOINK", '<b>'+replacingWord+'</b>');
@@ -144,13 +148,13 @@ export class MadLibComponent implements OnInit {
   }
 
   onTextAreaClick(event: MouseEvent) {
+    event.preventDefault()
+    console.log(event);
     this.textarea = event.target as HTMLTextAreaElement;
     const cursorPosition: number = this.textarea.selectionStart;
     const textContent: string = this.textarea.value;
 
     this.clickedWord = this.getWordAtPosition(textContent, cursorPosition);
-    //TODO: make it so that if you click beside a word it doesn't open the dialog
-    //TODO: make it so that if you click a word next to punctuation, it doesn't eat the punctuation
     if(this.clickedWord){
       this.showWordTool(this.clickedWord);
     }
@@ -170,7 +174,7 @@ export class MadLibComponent implements OnInit {
 
   showWordTool(word): void{
     const dialogRef = this.dialog.open(WordToolComponent, {
-      width: '78vw',
+      width: this.wordToolWidth,
       data: {
         word: word,
       },
@@ -200,7 +204,7 @@ export class MadLibComponent implements OnInit {
     cleanText = cleanText.replace(/(\r\n|\n|\r)/gm, " ");
     cleanText = cleanText.replaceAll("\\", " ");
     this.dialog.open(SuccessComponent, {
-      width: '75vw',
+      width: this.wordToolWidth,
       data: {
         text: cleanText,
       },
@@ -243,7 +247,11 @@ export class MadLibComponent implements OnInit {
       case 'BODY PART':
         return "A part of the body. ex. hand, foot, nose, elbow, butt";
       case 'ANIMAL':
-        return "A concious life-form found on Earth. ex. dog, horse, chipmunk, salmon, eagle"
+        return "A concious life-form found on Earth. ex. dog, horse, chipmunk, salmon, eagle";
+      case 'NAME':
+        return "A way to call a specific individual. ex. Billy-Bob, Jeanette, John Bungie, sparkle-butt";
+      case 'NUMBER':
+        return "A quantity or amount. ex. 1, 6, 10, 7000000000";
       default:
         return "I don't know";
     }
@@ -252,5 +260,39 @@ export class MadLibComponent implements OnInit {
 
   toggleTooltip(tooltip: MatTooltip): void {
     tooltip.show();
+  }
+
+  disableSubmitButton(){
+    if(this.madlibForm.valid){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getColor(){
+    if(this.madlibForm.valid){
+      return '#bdfac5';
+    } else {
+      return '#8d8d8d';
+    }
+  }
+
+  disableDoneButton(){
+    const regex: RegExp = /\[([A-Z]+)\]/;
+    if(this.textarea?.value.search(regex)>0){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getColorForDone(){
+    const regex: RegExp = /\[([A-Z]+)\]/;
+    if(this.textarea?.value.search(regex)>0){
+      return '#bdfac5';
+    } else {
+      return '#8d8d8d';
+    }
   }
 }

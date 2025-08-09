@@ -14,7 +14,13 @@
     </mat-radio-group>
     <input type="text" formControlName="userInput"/>
     <br/>
-    <div style="justify-content: center; display:flex"> <!--TODO: don't let user click submit until they select something-->
-        <div class="lib-button back-button" (click)="submit()">Submit</div> <div class="lib-button back-button" (click)="close()">Cancel</div>
+    <div style="justify-content: center; display:flex">
+        <button 
+            class="lib-button small" 
+            (click)="submit()" 
+            [style.background-color]="getColor()"
+            [disabled]="disableSubmitButton()"
+            >Submit</button>
+            <button class="lib-button small" (click)="close()">Cancel</button>
     </div>
 </form>

@@ -12,7 +12,7 @@
     font-weight: 500;
 }
 
-.lib-button {
+.myButton {
     border: 1px solid black;
     border-radius: 10px;
     text-align: center;
@@ -22,19 +22,19 @@
     bottom: 0px;
     transition: bottom 400ms, box-shadow 400ms, background-color 400ms;
     position: relative;
+    display: block;
+    font-size: 16px;
 }
 
-.main-button {
+.standard {
     width: 200px;
-    height: 30px;
-    padding-top: 10px;
+    height: 42px;
+    padding: 10px;
     margin: 15px;
 }
 
-.back-button {
-    width: 50px;
-    height: 20px;
-    padding: 2px;
+.small {
+    padding: 4px 8px 4px 8px;
     margin: 10px;
 }
 
@@ -51,18 +51,16 @@
 }
 
 @media only screen and (max-width: 480px) {
-    .main-button {
+    .standard {
         width: 240px;
-        height: 40px;
+        height: 50px;
         padding-top: 10px;
         margin: 15px;
         font-size: 20pt;
     }
 
-    .back-button {
-        width: 80px;
-        height: 28px;
-        padding: 2px;
+    .small {
+        padding: 4px 8px 4px 8px;
         margin: 10px;
         font-size: 16pt;
     }
@@ -72,13 +70,13 @@
     }
 }
 
-.lib-button:hover {
+.myButton:hover {
     background-color: #cdfcd3;
     bottom: 5px;
     box-shadow: 0px 10px 5px gray;
 }
 
-.lib-button:active {
+.myButton:active {
     background-color: #bdfac5;
     bottom: 0px;
     box-shadow: 0px 5px 5px gray;

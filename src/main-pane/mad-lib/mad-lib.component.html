@@ -4,29 +4,29 @@
 <hr>
 <div *ngIf="display=='options'" class="options center">
     <div>
-        <div id="play" class="lib-button main-button" (click)="prepareToPlay()">Play a Mad Lib</div>
-        <div id="write" class="lib-button main-button" (click)="handleWrite()">Write a Mad Lib</div>
+        <button id="play" class="myButton standard" (click)="prepareToPlay()">Play a Mad Lib</button>
+        <button id="write" class="myButton standard" (click)="handleWrite()">Write a Mad Lib</button>
     </div>
 </div>
 
 <div *ngIf="display=='madlibSelect'">
-    <div class="lib-button back-button" (click)="handleBack()">Back</div>
+    <button class="myButton small" (click)="handleBack()">Back</button>
     <div class="options center">
         <div>
             <div class="mobile-font">Select a madlib to play</div>
             <div *ngIf="initialView">
-                <div *ngFor="let name of madlibNames | slice:0:5" class="lib-button main-button" (click)="handlePlay(name)"> {{ name }}</div>
-                <div class="lib-button back-button" (click)="more()">...more</div>
+                <button *ngFor="let name of madlibNames | slice:0:5" class="myButton standard" (click)="handlePlay(name)"> {{ name }}</button>
+                <button class="myButton small" (click)="more()">...more</button>
             </div>
             <div *ngIf="!initialView">
-                <div *ngFor="let name of madlibNames" class="lib-button main-button" (click)="handlePlay(name)"> {{ name }}</div>
+                <button *ngFor="let name of madlibNames" class="myButton standard" (click)="handlePlay(name)"> {{ name }}</button>
             </div>
         </div>
     </div>
 </div>
 
 <div *ngIf="display=='play'">
-    <div class="lib-button back-button" (click)="handleBack()">Back</div>
+    <button class="myButton small" (click)="handleBack()">Back</button>
     <div class="options center">
         <form *ngIf="fillOut=='one'" class="options" [formGroup]="madlibForm">
             <div *ngFor="let hint of hints; index as i">
@@ -41,8 +41,13 @@
                     (click)="toggleTooltip(tooltip)"
                 >
             </div>
-            <!--TODO: don't let user click submit until they fill out the fields-->
-            <div class="lib-button back-button" (click)="handleSubmit()">Submit</div> 
+            <button 
+                class="myButton small" 
+                matButton="filled" 
+                [style.background-color]="getColor()" 
+                (click)="handleSubmit()" 
+                [disabled]="disableSubmitButton()"
+            >Submit</button>
         </form>
         <div *ngIf="fillOut=='two'">
             <div id="whole-area" [ngStyle]="{opacity: getOpacity()}" class="whole-area" [hidden]="hide"></div>
@@ -52,14 +57,14 @@
 </div>
 
 <div *ngIf="display=='write'">
-    <div class="lib-button back-button" style="display: inline-block" (click)="handleBack()">Back</div>
+    <button class="myButton small" style="display: inline-block" (click)="handleBack()">Back</button>
     <div class="center">
-        <div style="margin: 0px 10px 0px 10px" class="mobile-font">Write some text, select the word you want to madlibify, then select what type of word it is.</div>
+        <div style="margin: 0px 10px 0px 10px" class="mobile-font">Write some text, right-click or long press the word you want to madlibify, then select what type of word it is.</div>
     </div>
     <div class="center">
-        <textarea id="myTextarea" class="area mobile-font" (click)="onTextAreaClick($event)"></textarea>
+        <textarea id="myTextarea" class="area mobile-font" (contextmenu)="onTextAreaClick($event)"></textarea>
     </div>
     <div class="center">
-        <div class="lib-button back-button center" (click)="handleDone()">Done</div>
+        <button class="myButton small center" [style.background-color]="getColorForDone()" (click)="handleDone()" [disabled]="disableDoneButton()">Done</button>
     </div>
 </div>
