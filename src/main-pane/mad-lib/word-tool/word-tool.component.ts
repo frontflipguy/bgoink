@@ -35,10 +35,8 @@ export class WordToolComponent {
   }
 
   submit(){
-    console.log(this.wordTypeForm);
     this.wordType = this.wordTypeForm.value.checkboxes;
     if(this.wordType=='other'){this.wordType = this.wordTypeForm.value.userInput;}
-    console.log(this.wordType);
     this.dialogRef.close(this.wordType);
   }
 

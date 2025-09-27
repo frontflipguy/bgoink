@@ -1,0 +1,39 @@
+<div style="display:inline-block; width: 100%; position:relative">
+    <button class="myButton small" style="display:inline-block" (click)="handleBack()">Back</button>
+    <div class="edit-preview-div">
+        <mat-button-toggle-group 
+            name="edit" 
+            aria-label="edit" 
+            class="edit-preview-button" 
+            hideSingleSelectionIndicator="false" 
+            value="edit"
+            (click)="setMode($event)"
+            >
+            <mat-button-toggle value="edit" class="edit-preview-options" selected="true">Edit</mat-button-toggle>
+            <mat-button-toggle value="preview" class="edit-preview-options">Preview</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+</div>
+
+<div class="center">
+    <div style="margin: 0px 10px 0px 10px" class="mobile-font">Write some text, right-click or long press the word you want to madlibify, then select what type of word it is.</div>
+</div>
+<div class="center">
+
+    <textarea 
+        *ngIf="mode=='Edit'; else Preview" 
+        id="myTextarea" 
+        #myTextarea 
+        class="area mobile-font" 
+        (contextmenu)="onTextAreaClick($event)" 
+        spellcheck="false">
+    </textarea>
+
+    <ng-template #Preview>
+        <div class="area mobile-font preview" [innerHTML]="previewText.value"></div>
+    </ng-template>
+    
+</div>
+<div class="center">
+    <button class="myButton small center" [style.background-color]="getColorForDone()" (click)="handleDone()" [disabled]="disableDoneButton()">Done</button>
+</div>

@@ -2,69 +2,20 @@
     <div class="title">MAD LIB</div>
 </div>
 <hr>
-<div *ngIf="display=='options'" class="options center">
+<!--default-->
+<div *ngIf="display=='/madlib'" class="options center">
     <div>
-        <button id="play" class="myButton standard" (click)="prepareToPlay()">Play a Mad Lib</button>
-        <button id="write" class="myButton standard" (click)="handleWrite()">Write a Mad Lib</button>
+        <a routerLink="/madlib/play" id="play" class="myButton link">Play a Mad Lib</a>
+        <a routerLink="/madlib/write" id="write" class="myButton link">Write a Mad Lib</a>
     </div>
 </div>
 
-<div *ngIf="display=='madlibSelect'">
-    <button class="myButton small" (click)="handleBack()">Back</button>
-    <div class="options center">
-        <div>
-            <div class="mobile-font">Select a madlib to play</div>
-            <div *ngIf="initialView">
-                <button *ngFor="let name of madlibNames | slice:0:5" class="myButton standard" (click)="handlePlay(name)"> {{ name }}</button>
-                <button class="myButton small" (click)="more()">...more</button>
-            </div>
-            <div *ngIf="!initialView">
-                <button *ngFor="let name of madlibNames" class="myButton standard" (click)="handlePlay(name)"> {{ name }}</button>
-            </div>
-        </div>
-    </div>
+<!--bgoink.com/madlib/play-->
+<div *ngIf="display.includes('/madlib/play')"> 
+    <app-play></app-play>
 </div>
 
-<div *ngIf="display=='play'">
-    <button class="myButton small" (click)="handleBack()">Back</button>
-    <div class="options center">
-        <form *ngIf="fillOut=='one'" class="options" [formGroup]="madlibForm">
-            <div *ngFor="let hint of hints; index as i">
-                {{ hint }}: <input matInput type="text" id="word{{i}}" formControlName="word{{i}}" autocomplete="off"/> 
-                <img 
-                    class="tooltipImg" 
-                    src="../../assets/tooltip.png" 
-                    matTooltip="{{decideTooltipText(hint)}}" 
-                    matTooltipPosition="left" 
-                    (contextmenu)="$event.preventDefault()"
-                    #tooltip="matTooltip"
-                    (click)="toggleTooltip(tooltip)"
-                >
-            </div>
-            <button 
-                class="myButton small" 
-                matButton="filled" 
-                [style.background-color]="getColor()" 
-                (click)="handleSubmit()" 
-                [disabled]="disableSubmitButton()"
-            >Submit</button>
-        </form>
-        <div *ngIf="fillOut=='two'">
-            <div id="whole-area" [ngStyle]="{opacity: getOpacity()}" class="whole-area" [hidden]="hide"></div>
-            <div [innerHTML]="madlibTemplate"></div>
-        </div>
-    </div>
-</div>
-
-<div *ngIf="display=='write'">
-    <button class="myButton small" style="display: inline-block" (click)="handleBack()">Back</button>
-    <div class="center">
-        <div style="margin: 0px 10px 0px 10px" class="mobile-font">Write some text, right-click or long press the word you want to madlibify, then select what type of word it is.</div>
-    </div>
-    <div class="center">
-        <textarea id="myTextarea" class="area mobile-font" (contextmenu)="onTextAreaClick($event)"></textarea>
-    </div>
-    <div class="center">
-        <button class="myButton small center" [style.background-color]="getColorForDone()" (click)="handleDone()" [disabled]="disableDoneButton()">Done</button>
-    </div>
+<!--bgoink.com/madlib/write-->
+<div *ngIf="display=='/madlib/write'">
+    <app-write></app-write>
 </div>

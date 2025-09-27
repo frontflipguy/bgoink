@@ -1,0 +1,54 @@
+<button class="myButton small" (click)="handleBack()">Back</button>
+
+<div *ngIf="!reveal">
+    <div class="options center">
+        <div>
+            <div class="mobile-font">Select a madlib to play</div>
+            <div *ngIf="initialView">
+                <a *ngFor="let name of madlibNames | slice:0:5" 
+                    [routerLink]="['/madlib/play']" 
+                    [queryParams]="{ value: name }"
+                    class="myButton link" 
+                >{{ name }}</a>
+                <button class="myButton small" (click)="more()">...more</button>
+            </div>
+            <div *ngIf="!initialView">
+                <a *ngFor="let name of madlibNames" 
+                    [routerLink]="['/madlib/play']" 
+                    [queryParams]="{ value: name }"
+                    class="myButton link" 
+                >{{ name }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="reveal">
+    <div class="options center">
+        <form *ngIf="fillOut=='one'" class="options" [formGroup]="madlibForm">
+            <div *ngFor="let hint of hints; index as i">
+                {{ hint }}: <input matInput type="text" id="word{{i}}" formControlName="word{{i}}" autocomplete="off"/> 
+                <img 
+                    class="tooltipImg" 
+                    src="../../assets/tooltip.png" 
+                    matTooltip="{{decideTooltipText(hint)}}" 
+                    matTooltipPosition="left" 
+                    (contextmenu)="$event.preventDefault()"
+                    #tooltip="matTooltip"
+                    (click)="toggleTooltip(tooltip)"
+                >
+            </div>
+            <button 
+                class="myButton small" 
+                matButton="filled" 
+                [style.background-color]="getColor()" 
+                (click)="handleSubmit()" 
+                [disabled]="disableSubmitButton()"
+            >Submit</button>
+        </form>
+        <div *ngIf="fillOut=='two'">
+            <div id="whole-area" [ngStyle]="{opacity: getOpacity()}" class="whole-area" [hidden]="hide"></div>
+            <div [innerHTML]="madlibTemplate"></div>
+        </div>
+    </div>
+</div>

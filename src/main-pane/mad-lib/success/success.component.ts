@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-success',
@@ -28,7 +28,7 @@ export class SuccessComponent {
     this.text = this.passedData.text;
   }
   //TODO: make it so when you are done saving and getting your url it refreshes the site
-  save(name){
+  save(name: string){
     this.name = name;
     this.part = "part2";
 
@@ -41,7 +41,7 @@ export class SuccessComponent {
       this.text = this.text.replace(replacedWord, "FLAGOINK");
     }
 
-    this.response = this.http.get('https://bgoink.com/database',{params: {name: this.name, hints: this.hints, text: this.text}}); 
+    this.response = this.http.get('http://localhost:8080/database',{params: {name: this.name, hints: this.hints, text: this.text}}); 
     //https://bgoink.com/database //http://localhost:8080/database //TODO: make a dev build thingy that automatically switches these out
 
     this.response.subscribe((stuff) => {

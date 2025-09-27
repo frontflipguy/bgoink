@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    //"noImplicitAny": true,
     "paths": {
         "timers": ["./node_modules/timers-browserify"],
         "stream": ["./node_modules/stream-browserify"],
@@ -23,6 +24,8 @@
     ]
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false
+    "enableI18nLegacyMessageIdFormat": false,
+    "_enabledBlockTypes": ["if", "for", "switch", "defer"]
+          
   }
 }
