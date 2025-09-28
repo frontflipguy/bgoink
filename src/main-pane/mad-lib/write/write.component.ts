@@ -19,8 +19,11 @@ export class WriteComponent implements AfterViewInit{
   oldCurrentPosition: number;
   wordToolWidth: '320px';
   mode: string = "Edit";
-  previewText = new BehaviorSubject<string>("hello");
+  previewText$ = new BehaviorSubject<string>("hello");
+  doneDisabled$ = new BehaviorSubject<boolean>(true);
+  doneColor$ = new BehaviorSubject<string>("#8d8d8d");
   stashOriginalText: string;
+  regex: RegExp = /\[([A-Z]+)\]/;
 
     constructor(
         private router: Router,
@@ -80,6 +83,7 @@ export class WriteComponent implements AfterViewInit{
         if(result){ 
           //replace the word in the textarea with the wordtype
           this.textarea.value = this.replaceWordAfterIndex(this.textarea.value, this.oldCurrentPosition, this.clickedWord, '[' + result.toUpperCase() + ']');
+          this.updateValidity();
         }
       });
     }
@@ -106,21 +110,13 @@ export class WriteComponent implements AfterViewInit{
       });
     }
   
-    disableDoneButton(){
-      const regex: RegExp = /\[([A-Z]+)\]/;
-      if(this.mode == "Edit" && this.textarea?.value.search(regex)>0){
-        return false;
+    updateValidity(){
+      if(this.mode == "Edit" && this.textarea?.value.search(this.regex)>0){
+        this.doneDisabled$.next(false);
+        this.doneColor$.next('#bdfac5');
       } else {
-        return true;
-      }
-    }
-  
-    getColorForDone(){
-      const regex: RegExp = /\[([A-Z]+)\]/;
-      if(this.mode == "Edit" && this.textarea?.value.search(regex)>0){
-        return '#bdfac5';
-      } else {
-        return '#8d8d8d';
+        this.doneDisabled$.next(true);
+        this.doneColor$.next('#8d8d8d');
       }
     }
 
@@ -141,7 +137,7 @@ export class WriteComponent implements AfterViewInit{
           manipulatedText = manipulatedText.replace(replacedWord, '<b>'+replacingWord+'</b>');
         }
         
-        this.previewText.next(manipulatedText);
+        this.previewText$.next(manipulatedText);
       }
 
       if(intmed.innerText == "Edit"){
@@ -149,6 +145,8 @@ export class WriteComponent implements AfterViewInit{
           this.textAreaElement.nativeElement.innerHTML = this.stashOriginalText;
         }, 100);
       }
+
+      this.updateValidity();
     }
 
     decideExampleText(hint: string): string{

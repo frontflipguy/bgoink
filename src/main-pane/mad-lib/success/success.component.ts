@@ -41,7 +41,7 @@ export class SuccessComponent {
       this.text = this.text.replace(replacedWord, "FLAGOINK");
     }
 
-    this.response = this.http.get('http://localhost:8080/database',{params: {name: this.name, hints: this.hints, text: this.text}}); 
+    this.response = this.http.get('https://bgoink.com/database',{params: {name: this.name, hints: this.hints, text: this.text}}); 
     //https://bgoink.com/database //http://localhost:8080/database //TODO: make a dev build thingy that automatically switches these out
 
     this.response.subscribe((stuff) => {

@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'madlib/play', component: MadLibComponent },
   { path: 'madlib/play?value*', component: MadLibComponent },
   { path: 'madlib/write', component: MadLibComponent },
+  { path: '**', redirectTo: '/index.html', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -26,14 +26,14 @@
         #myTextarea 
         class="area mobile-font" 
         (contextmenu)="onTextAreaClick($event)" 
-        spellcheck="false">
-    </textarea>
+        (input)="updateValidity()"
+        spellcheck="false"></textarea>
 
     <ng-template #Preview>
-        <div class="area mobile-font preview" [innerHTML]="previewText.value"></div>
+        <div class="area mobile-font preview" [innerHTML]="previewText$.value"></div>
     </ng-template>
     
 </div>
 <div class="center">
-    <button class="myButton small center" [style.background-color]="getColorForDone()" (click)="handleDone()" [disabled]="disableDoneButton()">Done</button>
+    <button class="myButton small center" [style.background-color]="doneColor$.value" (click)="handleDone()" [disabled]="doneDisabled$.value">Done</button>
 </div>
