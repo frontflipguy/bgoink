@@ -7,10 +7,11 @@ import { tooltipObject } from '../tooltip-object';
 import { MatTooltip } from '@angular/material/tooltip';
 import { filter } from 'rxjs';
 
-@Component({ 
-  selector: 'app-play',
-  templateUrl: './play.component.html',
-  styleUrls: ['./play.component.scss'],
+@Component({
+    selector: 'app-play',
+    templateUrl: './play.component.html',
+    styleUrls: ['./play.component.scss'],
+    standalone: false
 })
 
 export class PlayComponent {

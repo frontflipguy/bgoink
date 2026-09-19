@@ -2,9 +2,10 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-flashcards',
-  templateUrl: './flashcards.component.html',
-  styleUrls: ['./flashcards.component.scss']
+    selector: 'app-flashcards',
+    templateUrl: './flashcards.component.html',
+    styleUrls: ['./flashcards.component.scss'],
+    standalone: false
 })
 
 export class FlashcardsComponent {

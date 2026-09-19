@@ -4,13 +4,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-success',
-  templateUrl: './success.component.html',
-  styleUrls: ['./success.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-  ]
+    selector: 'app-success',
+    templateUrl: './success.component.html',
+    styleUrls: ['./success.component.scss'],
+    imports: [
+        CommonModule,
+    ]
 })
 export class SuccessComponent {
 

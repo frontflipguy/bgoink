@@ -24,8 +24,6 @@
     ]
   },
   "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "_enabledBlockTypes": ["if", "for", "switch", "defer"]
-          
+    "enableI18nLegacyMessageIdFormat": false,          
   }
 }

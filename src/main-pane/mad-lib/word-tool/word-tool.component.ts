@@ -6,16 +6,15 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-word-tool',
-  templateUrl: './word-tool.component.html',
-  styleUrls: ['./word-tool.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    MatRadioModule,
-    ReactiveFormsModule,
-  ]
+    selector: 'app-word-tool',
+    templateUrl: './word-tool.component.html',
+    styleUrls: ['./word-tool.component.scss'],
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        MatRadioModule,
+        ReactiveFormsModule,
+    ]
 })
 export class WordToolComponent {
 

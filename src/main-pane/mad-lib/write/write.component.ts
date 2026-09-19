@@ -6,11 +6,12 @@ import { SuccessComponent } from '../success/success.component';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { examples } from '../tooltip-object';
 
-@Component({ 
+@Component({
     selector: 'app-write',
     templateUrl: './write.component.html',
     styleUrls: ['./write.component.scss'],
-  })
+    standalone: false
+})
 
 export class WriteComponent implements AfterViewInit{
   @ViewChild('myTextarea') textAreaElement!: ElementRef;
