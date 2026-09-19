@@ -1,3 +1,5 @@
 <div class="main-pane">
-    <app-mad-lib></app-mad-lib>
+    <app-options *ngIf="widget=='/'" (widget)="onWidgetSelected($event)"></app-options>
+    <app-mad-lib *ngIf="widget.includes('/madlib')"></app-mad-lib>
+    <app-flashcards *ngIf="widget=='/flashcards'"></app-flashcards>
 </div>

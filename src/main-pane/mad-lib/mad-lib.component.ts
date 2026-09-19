@@ -9,17 +9,19 @@ import { filter } from 'rxjs';
   styleUrls: ['./mad-lib.component.scss'],
 })
 export class MadLibComponent {
-  display = '';
+  display = '/madlib';
 
   constructor(
     private router: Router,
   ){}
 
   ngOnInit(){
+    console.log(window.location)
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((thing: NavigationEnd) => {
         this.display = thing.urlAfterRedirects;
+
     })
   }
 }

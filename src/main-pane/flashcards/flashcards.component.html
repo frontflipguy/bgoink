@@ -1,0 +1,17 @@
+<div class="center" style="padding-top: 10px">
+    <div class="title">Flash Card Maker</div>
+</div>
+<hr>
+<div>
+    <div class="line">Enter an expression or an equation:</div>
+    <div class="line">
+        <input type="text" id="mathInput" #mathInput [formControl]="mathStuff" autocomplete="off"/>
+        <div>Symbols: <button (click)="insert('×')">×</button><button (click)="insert('÷')">÷</button></div>
+    </div>
+    <div class="line"><button (click)="start()">Start</button></div>
+</div>
+<hr>
+<div *ngIf="showActionArea" class="center">
+    <div>{{ question }} = <input type="text" [formControl]="answer" autocomplete="off"/></div>
+    <div><button (click)="check()">Check</button></div>
+</div>

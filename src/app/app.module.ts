@@ -20,6 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { WriteComponent } from 'src/main-pane/mad-lib/write/write.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { OptionsComponent } from 'src/main-pane/options/options.component';
+import { FlashcardsComponent } from 'src/main-pane/flashcards/flashcards.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MadLibComponent,
     PlayComponent,
     WriteComponent,
+    OptionsComponent,
+    FlashcardsComponent,
   ],
   imports: [
     BrowserModule,
