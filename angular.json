@@ -66,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "bgoink:build:production"
+              "buildTarget": "bgoink:build:production"
             },
             "development": {
-              "browserTarget": "bgoink:build:development"
+              "buildTarget": "bgoink:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -77,7 +77,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bgoink:build"
+            "buildTarget": "bgoink:build"
           }
         },
         "test": {
