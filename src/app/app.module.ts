@@ -10,7 +10,7 @@ import { MadLibComponent } from 'src/main-pane/mad-lib/mad-lib.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WordToolComponent } from 'src/main-pane/mad-lib/word-tool/word-tool.component';
 import { SuccessComponent } from 'src/main-pane/mad-lib/success/success.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { PlayComponent } from 'src/main-pane/mad-lib/play/play.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -24,36 +24,29 @@ import { OptionsComponent } from 'src/main-pane/options/options.component';
 import { FlashcardsComponent } from 'src/main-pane/flashcards/flashcards.component';
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HelloWorldComponent,
-    MainPaneComponent,
-    MadLibComponent,
-    PlayComponent,
-    WriteComponent,
-    OptionsComponent,
-    FlashcardsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatCheckboxModule,
-    WordToolComponent,
-    SuccessComponent,
-    MatInputModule,
-    MatFormFieldModule,
-    MatTooltipModule,
-    CommonModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    RouterLink,
-    MatButtonToggleModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HelloWorldComponent,
+        MainPaneComponent,
+        MadLibComponent,
+        PlayComponent,
+        WriteComponent,
+        OptionsComponent,
+        FlashcardsComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatInputModule,
+        MatCheckboxModule,
+        WordToolComponent,
+        SuccessComponent,
+        MatInputModule,
+        MatFormFieldModule,
+        MatTooltipModule,
+        CommonModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+        RouterLink,
+        MatButtonToggleModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
