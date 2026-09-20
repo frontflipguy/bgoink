@@ -1,16 +1,16 @@
-@property --mat-standard-button-toggle-height {
+@property --mat-button-toggle-height {
     syntax: "<length>";
     inherits: false;
     initial-value: 30px;
 }
 
-@property --mat-standard-button-toggle-selected-state-background-color {
+@property --mat-button-toggle-selected-state-background-color {
     syntax: "<color>";
     inherits: false;
     initial-value: #bdfac5;
 }
 
-@property --mat-standard-button-toggle-selected-state-text-color {
+@property --mat-button-toggle-selected-state-text-color {
     syntax: "<color>";
     inherits: false;
     initial-value: #000;
