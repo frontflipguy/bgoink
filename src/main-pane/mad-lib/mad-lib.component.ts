@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
-import { filter } from "rxjs";
-
+import { filter } from "rxjs/dist/types";
 
 @Component({
     selector: 'app-mad-lib',
